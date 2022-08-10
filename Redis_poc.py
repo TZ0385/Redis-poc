@@ -11,19 +11,6 @@ class Redis:
     def __init__(self):
         pass
 
-    def connect(self, rhost):
-        ip = rhost
-        try:
-
-            r = redis.StrictRedis(host=ip, port=result.rport)
-            r.info()
-        except:
-            print("目标%s不存在未授权访问漏洞！" % result.rhost)
-            return False
-        else:
-            print("目标%s存在未授权漏洞！！！" % result.rhost)
-            print(r.info())
-
     def check(self):
         if result.list:
             with open(result.list, 'r', encoding='utf-8') as f:
@@ -41,11 +28,10 @@ def poc(rhost):
         r = redis.StrictRedis(host=ip, port=result.rport)
         r.info()
     except:
-        print("目标%s不存在未授权访问漏洞！" % result.rhost)
+        print("目标%s不存在未授权访问漏洞！" % ip)
         return False
     else:
-        print("[漏洞告警]--目标 %s 存在未授权漏洞！！！" % result.rhost)
-
+        print("[漏洞告警]--目标 %s 存在未授权漏洞！！！" % ip)
 
 
 if __name__ == '__main__':
@@ -66,9 +52,9 @@ if __name__ == '__main__':
     '''
     print(show + '\n')
     arg = ArgumentParser(description="Redis 未授权漏洞测试")
-    arg.add_argument('--list', help='输入批量文件路径，eag:target.txt', dest='list')
-    arg.add_argument('--lhost', help='攻击机IP，eag: 127.0.0.1')
-    arg.add_argument('--lport', help='攻击机Port')
+    arg.add_argument('--list', help='输入批量文件路径，eag:target.txt', default='target.txt', dest='list')
+    arg.add_argument('--lhost', help='攻击机IP，eag: 127.0.0.1', default='127.0.0.1')
+    arg.add_argument('--lport', help='攻击机Port,默认 31000', default=31000)
     arg.add_argument('--rhost', help='目标IP')
     arg.add_argument('--rport', help='目标端口', default=6379)
     result = arg.parse_args()
