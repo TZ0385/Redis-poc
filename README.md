@@ -1,5 +1,6 @@
 # Redis-poc
 Redis未授权访问批量探测
+（第一次自己写poc，纪念一下）
 # 使用
 ```
    python Redis_poc.py -h
