@@ -32,6 +32,7 @@ def poc(rhost):
         return False
     else:
         print("[漏洞告警]--目标 %s 存在未授权漏洞！！！" % ip)
+        print(r.info())
 
 
 if __name__ == '__main__':
@@ -52,7 +53,7 @@ if __name__ == '__main__':
     '''
     print(show + '\n')
     arg = ArgumentParser(description="Redis 未授权漏洞测试")
-    arg.add_argument('--list', help='输入批量文件路径，eag:target.txt', default='target.txt', dest='list')
+    arg.add_argument('--list', help='输入批量文件路径，eag:target.txt', dest='list')
     arg.add_argument('--lhost', help='攻击机IP，eag: 127.0.0.1', default='127.0.0.1')
     arg.add_argument('--lport', help='攻击机Port,默认 31000', default=31000)
     arg.add_argument('--rhost', help='目标IP')
